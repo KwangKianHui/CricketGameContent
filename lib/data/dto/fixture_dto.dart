@@ -14,7 +14,7 @@ class FixtureDTO with _$FixtureDTO {
   const factory FixtureDTO({
     required String fixtureId,
     required String fixtureDate,
-    required String matchTitle, 
+    required String matchTitle,
     required String matchSubTitle,
     required String result,
     required String seriesId,
@@ -29,8 +29,8 @@ class FixtureDTO with _$FixtureDTO {
     List<String> awayStrings = away.split("-");
     return FixtureClass(
       fixtureId: fixtureId,
-      fixtureDate: DateTime.parse(fixtureDate), 
-      matchTitle: matchTitle, 
+      fixtureDate: DateTime.parse(fixtureDate),
+      matchTitle: matchTitle,
       matchSubTitle: matchSubTitle,
       result: result,
       seriesId: seriesId,
@@ -41,7 +41,27 @@ class FixtureDTO with _$FixtureDTO {
     );
   }
 
+  // @override
+  // bool operator ==(Object other) =>
+  //     identical(this, other) ||
+  //     other is FixtureDTO &&
+  //         runtimeType == other.runtimeType &&
+  //         fixtureId == other.fixtureId &&
+  //         matchTitle == other.matchTitle &&
+  //         matchSubTitle == other.matchSubTitle &&
+  //         result == other.result &&
+  //         seriesId == other.seriesId &&
+  //         status == other.status &&
+  //         venue == other.venue &&
+  //         home == other.home &&
+  //         away == other.away &&
+  //         fixtureDate == other.fixtureDate;
+
+  // @override
+  // int get hashCode => Object.hash(fixtureId, fixtureDate, matchTitle,
+  //     matchSubTitle, result, seriesId, status, venue, home, away);
+
   // toJson() created by json_serializable package
-  factory FixtureDTO.fromJson(Map<String, Object?> json)
-      => _$FixtureDTOFromJson(json);
+  factory FixtureDTO.fromJson(Map<String, Object?> json) =>
+      _$FixtureDTOFromJson(json);
 }

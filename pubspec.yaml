@@ -29,7 +29,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_riverpod: ^1.0.4 # provider package, MIT License
+  responsive_framework: ^0.2.0 # app responsive, BSD Zero Clause License
+  intl: ^0.17.0 # date format etc, BSD-3-Clause License
+  flutter_inset_box_shadow: ^1.0.8 # BSD-3-Clause License
+  dartz: ^0.10.1 # functional programming, MIT License
+  http: ^0.13.5 # http requests for API endpoints, BSD-3-Clause License 
+  carousel_slider: ^4.2.1 # carousel sliders widget, MIT License
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -38,6 +44,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  freezed: ^2.0.3+1 # code generator for data classes, MIT License
+  freezed_annotation: ^2.0.3 # required annotations for freezed package ->
+                            # tells flutter what to do when they see those annotations, MIT License
+  json_serializable: ^6.2.0 # generates code to convert data classes to/from JSON code, BSD-3-Clause License
+  build_runner: ^2.1.11 # generate files based on the code generators for freezed and json_serializable, BSD-3-Clause License
+  mocktail: ^0.3.0 # mockito unit tests, MIT License
+  nock: ^1.2.1 # http request mocking library, MIT License
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -58,7 +71,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
+  assets:
+    - assets/images/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
@@ -73,7 +87,21 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat/static/Montserrat-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Montserrat/static/Montserrat-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Montserrat/static/Montserrat-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Montserrat/static/Montserrat-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Montserrat/static/Montserrat-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Montserrat/static/Montserrat-ExtraLight.ttf
+          weight: 200
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

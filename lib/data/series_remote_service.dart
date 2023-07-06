@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:cricket_game_content_app/data/dto/fixture_dto.dart';
 import 'package:cricket_game_content_app/data/dto/series_dto.dart';
-import 'package:cricket_game_content_app/shared/api_key.dart';
 import 'package:http/http.dart' as http;
 
 class SeriesRemoteService {
@@ -64,7 +63,7 @@ class SeriesRemoteService {
     final response = await http.get(
         Uri.parse(
             "https://cricket-live-data.p.rapidapi.com/fixtures-by-series/$seriesId"),
-        headers: {"X-RapidAPI-Key": API_TOKEN, 'X-RapidAPI-Host': API_HOST});
+        headers: {"X-RapidAPI-Key": "\${{ secrets.API_TOKEN }}", 'X-RapidAPI-Host': "\${{ secrets.API_HOST }}"});
 
     if (response.statusCode != 200) {
       throw Exception("API error");

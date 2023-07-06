@@ -10,8 +10,6 @@ jobs:
     name: Build Web
     env:
       my_secret: ${{secrets.commit_secret}}
-      API_TOKEN: ${{secrets.API_TOKEN}}
-      API_HOST: ${{secrets.API_HOST}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -28,6 +26,9 @@ jobs:
       - name: Enable Flutter Web
         run: flutter config --enable-web
       - name: Get dependencies and build Web
+        env: 
+          API_TOKEN: ${{secrets.API_TOKEN}}
+          API_HOST: ${{secrets.API_HOST}}
         run: |
           flutter pub get
           flutter build web --release

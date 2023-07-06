@@ -12,7 +12,7 @@ class SeriesRemoteService {
   Future<List<SeriesDTO>> getSeriesDataList() async {
     final response = await http.get(
         Uri.parse("https://cricket-live-data.p.rapidapi.com/series"),
-        headers: {"X-RapidAPI-Key": API_TOKEN, 'X-RapidAPI-Host': API_HOST});
+        headers: {"X-RapidAPI-Key": "\${{ secrets.API_TOKEN }}", 'X-RapidAPI-Host': "\${{ secrets.API_HOST }}"});
 
     if (response.statusCode != 200) {
       throw Exception("API error");

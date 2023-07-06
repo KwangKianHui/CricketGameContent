@@ -12,18 +12,18 @@ class SeriesNotifier extends StateNotifier<SeriesState> {
     final getListResult = await _seriesRepo.getSeriesDataList();
     getListResult.fold((failure) {
       failure.maybeMap(
-        notFound: (_) {
-          state = state.copyWith(
-              isLoading: false,
-              errorStatus: true,
-              errorMessage: "Data not found");
-        },
-        cancelledOperation: (_) {
-          state = state.copyWith(
-              isLoading: false,
-              errorStatus: true,
-              errorMessage: "Operation cancelled");
-        },
+        // notFound: (_) {
+        //   state = state.copyWith(
+        //       isLoading: false,
+        //       errorStatus: true,
+        //       errorMessage: "Data not found");
+        // },
+        // cancelledOperation: (_) {
+        //   state = state.copyWith(
+        //       isLoading: false,
+        //       errorStatus: true,
+        //       errorMessage: "Operation cancelled");
+        // },
         orElse: () {
           state = state.copyWith(
               isLoading: false,
@@ -46,18 +46,18 @@ class SeriesNotifier extends StateNotifier<SeriesState> {
     final getListResult = await _seriesRepo.getFixtureBySeriesDataList(seriesId);
     getListResult.fold((failure) {
       failure.maybeMap(
-        notFound: (_) {
-          state = state.copyWith(
-              isLoading: false,
-              errorStatus: true,
-              errorMessage: "Data not found");
-        },
-        cancelledOperation: (_) {
-          state = state.copyWith(
-              isLoading: false,
-              errorStatus: true,
-              errorMessage: "Operation cancelled");
-        },
+        // notFound: (_) {
+        //   state = state.copyWith(
+        //       isLoading: false,
+        //       errorStatus: true,
+        //       errorMessage: "Data not found");
+        // },
+        // cancelledOperation: (_) {
+        //   state = state.copyWith(
+        //       isLoading: false,
+        //       errorStatus: true,
+        //       errorMessage: "Operation cancelled");
+        // },
         orElse: () {
           state = state.copyWith(
               isLoading: false,

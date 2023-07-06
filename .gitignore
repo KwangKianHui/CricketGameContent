@@ -51,5 +51,5 @@ app.*.map.json
 # Web related
 lib/generated_plugin_registrant.dart
 
-# API tokens
-lib/shared/api_key.dart
+# API tokens (exposed for the purpose of this project)
+# lib/shared/api_key.dart

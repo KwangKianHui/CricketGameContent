@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:cricket_game_content_app/data/dto/fixture_dto.dart';
 import 'package:cricket_game_content_app/data/dto/series_dto.dart';
+import 'package:cricket_game_content_app/shared/api_key.dart';
 import 'package:http/http.dart' as http;
 
 class SeriesRemoteService {
@@ -11,7 +12,7 @@ class SeriesRemoteService {
   Future<List<SeriesDTO>> getSeriesDataList() async {
     final response = await http.get(
         Uri.parse("https://cricket-live-data.p.rapidapi.com/series"),
-        headers: {"X-RapidAPI-Key": "\${{ secrets.API_TOKEN }}", 'X-RapidAPI-Host': "\${{ secrets.API_HOST }}"});
+        headers: {"X-RapidAPI-Key": API_TOKEN, 'X-RapidAPI-Host': API_HOST});
 
     if (response.statusCode != 200) {
       throw Exception("API error");
@@ -20,25 +21,6 @@ class SeriesRemoteService {
     List<SeriesDTO> seriesDTOList = [];
 
     var data = await json.decode(response.body);
-    // "results": [
-    //    {
-    //        "series": [
-    //            {
-    //                "season": "___"
-    //                "series_id": "___"
-    //                "series_name": "___"
-    //                "status": "___"
-    //                "updated_at": "___"
-    //            },
-    //            {
-    //                ...
-    //            },
-    //            ...
-    //        ],
-    //        type: "___"
-    //    },
-    //    ...
-    // ]
     data["results"].forEach((seriesListObj) {
       seriesListObj["series"].forEach((seriesObj) {
         seriesDTOList.add(
@@ -72,28 +54,8 @@ class SeriesRemoteService {
     List<FixtureDTO> fixtureDTOList = [];
 
     var data = await json.decode(response.body);
-    // "results": [
-    //    {
-    //        "series": [
-    //            {
-    //                "season": "___"
-    //                "series_id": "___"
-    //                "series_name": "___"
-    //                "status": "___"
-    //                "updated_at": "___"
-    //            },
-    //            {
-    //                ...
-    //            },
-    //            ...
-    //        ],
-    //        type: "___"
-    //    },
-    //    ...
-    // ]
     data["results"].forEach((fixtureObj) {
       fixtureDTOList.add(
-        //seriesObj["series_id"].toString(),
         FixtureDTO(
           fixtureId: fixtureObj["id"].toString(),
           fixtureDate: fixtureObj["date"].toString(),

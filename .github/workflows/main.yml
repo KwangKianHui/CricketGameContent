@@ -26,6 +26,9 @@ jobs:
       - name: Enable Flutter Web
         run: flutter config --enable-web
       - name: Get dependencies and build Web
+        env: 
+          API_TOKEN: ${{secrets.API_TOKEN}}
+          API_HOST: ${{secrets.API_HOST}}
         run: |
           flutter pub get
           flutter build web --release

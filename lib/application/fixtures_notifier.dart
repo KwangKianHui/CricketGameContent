@@ -38,10 +38,10 @@ class FixturesNotifier extends StateNotifier<FixturesState> {
     });
   }
 
-  Future<void> getFixtureListByDate(String seriesId) async {
+  Future<void> getFixtureListByDate(String date) async {
     state = state.copyWith(isLoading: true);
 
-    final getListResult = await _fixturesRepo.getFixtureListByDate(seriesId);
+    final getListResult = await _fixturesRepo.getFixtureListByDate(date);
     getListResult.fold((failure) {
       failure.maybeMap(
         // notFound: (_) {

@@ -1,5 +1,5 @@
-import 'package:cricket_game_content_app/presentation/fixtures_page_widgets/fixtures_detail_page_widget.dart';
-import 'package:cricket_game_content_app/presentation/fixtures_page_widgets/fixtures_list_page_widget.dart';
+import 'package:cricket_game_content_app/presentation/fixtures_page_widgets/fixtures_or_results_detail_page_widget.dart';
+import 'package:cricket_game_content_app/presentation/fixtures_page_widgets/fixtures_or_results_list_page_widget.dart';
 import 'package:cricket_game_content_app/shared/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,10 +8,12 @@ class FixturesPageWidget extends ConsumerStatefulWidget {
   const FixturesPageWidget({Key? key}) : super(key: key);
 
   @override
-  FixturesPageWidgetState createState() => FixturesPageWidgetState();
+  FixturesPageWidgetState createState() =>
+      FixturesPageWidgetState();
 }
 
-class FixturesPageWidgetState extends ConsumerState<FixturesPageWidget> {
+class FixturesPageWidgetState
+    extends ConsumerState<FixturesPageWidget> {
   @override
   void initState() {
     if (ref.read(fixturesDataNotifierProvider).dataList.isEmpty) {
@@ -25,8 +27,8 @@ class FixturesPageWidgetState extends ConsumerState<FixturesPageWidget> {
   }
 
   List<Widget> fixturesWidgetList = [
-    const FixturesListPageWidget(),
-    const FixturesDetailPageWidget(),
+    const FixturesOrResultsListPageWidget(),
+    const FixturesOrResultsDetailPageWidget(),
   ];
 
   @override

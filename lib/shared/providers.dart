@@ -2,10 +2,14 @@ import 'package:cricket_game_content_app/application/class/fixture_class.dart';
 import 'package:cricket_game_content_app/application/class/series_class.dart';
 import 'package:cricket_game_content_app/application/fixtures_notifier.dart';
 import 'package:cricket_game_content_app/application/fixtures_state.dart';
+import 'package:cricket_game_content_app/application/results_notifier.dart';
+import 'package:cricket_game_content_app/application/results_state.dart';
 import 'package:cricket_game_content_app/application/series_notifier.dart';
 import 'package:cricket_game_content_app/application/series_state.dart';
 import 'package:cricket_game_content_app/data/fixtures_remote_service.dart';
 import 'package:cricket_game_content_app/data/fixtures_repository.dart';
+import 'package:cricket_game_content_app/data/results_remote_service.dart';
+import 'package:cricket_game_content_app/data/results_repository.dart';
 import 'package:cricket_game_content_app/data/series_remote_service.dart';
 import 'package:cricket_game_content_app/data/series_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -40,13 +44,27 @@ final fixturesDataNotifierProvider = StateNotifierProvider<FixturesNotifier, Fix
 final selectedFixturesDetailProvider = StateNotifierProvider<FixtureDetailProvider, FixtureClass?>(
     (ref) => FixtureDetailProvider());
 
-final dateFilterOverlayIsOpen = StateNotifierProvider<BoolProvider, bool>((ref) => BoolProvider());
+final fixtureDateFilterOverlayIsOpen = StateNotifierProvider<BoolProvider, bool>((ref) => BoolProvider());
 
 final fixturesWidgetIndex = StateNotifierProvider<IntegerProvider, int>(
     (ref) => IntegerProvider(0));
 // ------------- end providers for fixtures page -------------
 
 // ------------- providers for results page -------------
+final resultsDataRemoteServiceProvider = Provider((ref) => ResultsRemoteService());
+
+final resultsDataRepoProvider = Provider((ref) => ResultsRepository(ref.watch(resultsDataRemoteServiceProvider)));
+
+final resultsDataNotifierProvider = StateNotifierProvider<ResultsNotifier, ResultsState>(
+    (ref) => ResultsNotifier(ref.watch(resultsDataRepoProvider)));
+
+final selectedResultsDetailProvider = StateNotifierProvider<FixtureDetailProvider, FixtureClass?>(
+    (ref) => FixtureDetailProvider());
+
+final resultDateFilterOverlayIsOpen = StateNotifierProvider<BoolProvider, bool>((ref) => BoolProvider());
+
+final resultsWidgetIndex = StateNotifierProvider<IntegerProvider, int>(
+    (ref) => IntegerProvider(0));
 // ------------- end providers for results page -------------
 
 // ------------- others -------------

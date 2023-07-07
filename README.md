@@ -10,9 +10,7 @@ Program Structure and UIUX prototype is available on the Figma link: https://www
 2) Program Structure
 3) UIUX Prototype, Planning and Decisions
 4) Code Details And Other Workflows
-
-
-
+5) Future Work Or Improvements
 
 
 ### 1) How To Run On Your Own Laptop 
@@ -65,7 +63,7 @@ Series(series_id, series_name, status, season, updated_at)
 
 Team(id, code, name)
 
-Fixtures(id, match_title, match_subtitle, date, venue, status,, result, home:Team, away:Team, series_id)
+Fixtures(id, match_title, match_subtitle, date, venue, status,, result, home:Team, away:Team, series_id) -> results returns the same type
 
 Batting(id, player_id, player_name, balls, bat_order, fours, how_out, minutes, runs, sixes, strike_rate)
 
@@ -161,7 +159,7 @@ In this section, I will talk about how a typical flow would look like along with
 
 ###### lib/presentation/series_page_widgets/series_page_widget.dart:
 
-<img width="584" alt="image" src="https://github.com/KwangKianHui/CricketGameContent/assets/22290289/19b8d418-8203-4ddc-8d81-a9ae6e9e51f5">
+<img width="568" alt="image" src="https://github.com/KwangKianHui/CricketGameContent/assets/22290289/5c0eacac-6f77-45c5-92dd-2e9586be4f33">
 
 In this app, there are various user interactions that causes the app to initiate the API request. However, the most common way would be during the initial build of the page through initState() functions. In the initState functions, I will use Future.delayed() to allow the use of async to wait for the API request to be completed. 
 
@@ -263,4 +261,18 @@ The following tests are performed for Repository (systemUnderTest2):
 2) expect class objects list to be equal to result of converted DTO objects list using .fromDTO() function
 3) expect left OperationFailure result on mock failed API result
 
-Next, I executed the tests using "flutter test --coverage". This allows us to generate a test coverage report. Next I will be excluding some files from the coverage report such as all "*_remote_service.dart" and any "*.g.dart" files. Remote service files are excluded as we do not test API requests. .g.dart files are excluded as these are auto generated functions (toJson and fromJson) that are not used in this project. In other projects which involves writing of JSON data using POST request, these will not be excluded.
+Next, I executed the tests using "flutter test --coverage". This allows us to generate a test coverage report. Next I will be excluding some files from the coverage report such as all "*_remote_service.dart" and any "*.g.dart" files using the following command:
+
+lcov --remove coverage/lcov.info 'lib/data/dto/*.g.dart' 'lib/data/*_remote_service.dart' -o coverage/lcov.info
+
+Remote service files are excluded as we do not test API requests. .g.dart files are excluded as these are auto generated functions (toJson and fromJson) that are not used in this project. In other projects which involves writing of JSON data using POST request, these will not be excluded.
+
+##### Final Coverage Report:
+
+<img width="1948" alt="image" src="https://github.com/KwangKianHui/CricketGameContent/assets/22290289/085bb918-91d7-4f24-8b71-ff368f0ab09d">
+
+### 5) Future Work Or Improvements
+
+1) Drag down to refresh (RefreshIndicator) feature. Allow users to refresh the current page without having to refresh the whole app
+2) Include unit tests for fromDTO() functions that converts DTO objects to class objects. It is not included as I will need to debug on list equality issues when doing expect() for 2 identical lists
+3) Some UIUX layouts. 

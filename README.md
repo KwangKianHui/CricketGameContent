@@ -1,6 +1,7 @@
 # cricket_game_content_app
 
 Welcome to the documentation for the Cricket Game Content App. This app uses the free api from https://rapidapi.com/sportcontentapi/api/cricket-live-data/ to display contents regarding cricket games.
+
 This app is deployed on: https://kwangkianhui.github.io/CricketGameContent/#/
 
 Program Structure and UIUX prototype is available on the Figma link: https://www.figma.com/file/WgUOWU5hRL3x3xvkGmtaQI/Cricket-Game-Content?type=design&node-id=2%3A2&mode=design&t=4XSmA3A1CFISHSt0-1

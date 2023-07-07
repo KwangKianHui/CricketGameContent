@@ -1,4 +1,6 @@
 import 'package:cricket_game_content_app/presentation/const/app_styles.dart';
+import 'package:cricket_game_content_app/presentation/const/formats.dart';
+import 'package:cricket_game_content_app/presentation/widgets/rounded_container_widget.dart';
 import 'package:cricket_game_content_app/shared/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,17 +19,12 @@ class FixtureDetailsOverlayWidget extends ConsumerWidget {
         width: MediaQuery.of(context).size.width,
         color: AppStyles.mainAppColour.withOpacity(0.7),
         alignment: Alignment.center,
-        child: Container(
+        child: RoundedContainerWidget(
           padding: const EdgeInsets.symmetric(
             horizontal: AppStyles.mobileBorderPadding,
             vertical: AppStyles.webBorderPadding,
           ),
           width: MediaQuery.of(context).size.width * 0.7,
-          decoration: BoxDecoration(
-            color: AppStyles.containerMainAppColour,
-            borderRadius:
-                BorderRadius.circular(AppStyles.containerBorderRadius),
-          ),
           child: Column(
             children: [
               ElevatedButton(
@@ -54,6 +51,7 @@ class FixtureDetailsOverlayWidget extends ConsumerWidget {
               ),
               Expanded(child: Text(fixtureDetail.matchTitle)),
               Expanded(child: Text(fixtureDetail.venue)),
+              Expanded(child: Text(dateFormatter.format(fixtureDetail.fixtureDate))),
               Expanded(child: Text(fixtureDetail.status)),
             ],
           ),

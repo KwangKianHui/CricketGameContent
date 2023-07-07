@@ -1,4 +1,5 @@
 import 'package:cricket_game_content_app/presentation/bottom_navigation_bar_widget.dart';
+import 'package:cricket_game_content_app/presentation/fixtures_page_widgets/fixtures_page_widget.dart';
 import 'package:cricket_game_content_app/presentation/series_page_widgets/series_page_widget.dart';
 import 'package:cricket_game_content_app/shared/providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,7 +17,7 @@ class MainAppWidget extends ConsumerStatefulWidget {
 class MainAppWidgetState extends ConsumerState<MainAppWidget> {
   List<Widget> pageList = const [
     SeriesPageWidget(),
-    SizedBox(),
+    FixturesPageWidget(),
     SizedBox(),
   ];
 

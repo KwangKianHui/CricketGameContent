@@ -26,6 +26,9 @@ class UpcomingAndOngoingSeriesWidgetState
         .dataList
         .where((series) => series.status == ongoingOrUpcoming)
         .toList();
+
+    var state = ref.watch(seriesDataNotifierProvider);
+
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       child: Column(
@@ -48,62 +51,67 @@ class UpcomingAndOngoingSeriesWidgetState
             alignment: Alignment.center,
             child: Text("$ongoingOrUpcoming list"),
           ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.7,
-                constraints: AppStyles.appContainerConstraints,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: seriesList.length,
-                  itemBuilder: (context, index) => MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () {
-                        ref
-                            .read(selectedSeriesDetailProvider.notifier)
-                            .change(seriesList[index]);
-                        ref
-                            .read(seriesWidgetIndex.notifier)
-                            .change(1); // switch to series details page
-                      },
-                      child: RoundedContainerWidget(
-                        height: 150,
-                        margin: AppStyles.listItemVerticalSpacing,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Column(
+          state.errorStatus
+              ? const SizedBox(
+                  child: Text("An error occurred please try again"))
+              : Expanded(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      constraints: AppStyles.appContainerConstraints,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: seriesList.length,
+                        itemBuilder: (context, index) => MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () {
+                              ref
+                                  .read(selectedSeriesDetailProvider.notifier)
+                                  .change(seriesList[index]);
+                              ref
+                                  .read(seriesWidgetIndex.notifier)
+                                  .change(1); // switch to series details page
+                            },
+                            child: RoundedContainerWidget(
+                              height: 150,
+                              margin: AppStyles.listItemVerticalSpacing,
+                              child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    seriesList[index].seriesName,
+                                  Expanded(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          seriesList[index].seriesName,
+                                        ),
+                                        Text(
+                                          seriesList[index].season,
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Text(
-                                    seriesList[index].season,
+                                  Container(
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal:
+                                            AppStyles.mobileBorderPadding),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      seriesList[index].status,
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
-                            Container(
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: AppStyles.mobileBorderPadding),
-                              alignment: Alignment.center,
-                              child: Text(
-                                seriesList[index].status,
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ),
-          ),
         ],
       ),
     );

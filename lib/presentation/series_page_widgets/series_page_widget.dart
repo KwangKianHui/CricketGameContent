@@ -23,12 +23,6 @@ class SeriesPageWidgetState extends ConsumerState<SeriesPageWidget> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    ref.read(seriesDataNotifierProvider.notifier).dispose();
-    super.dispose();
-  }
-
   List<Widget> seriesWidgetList = [
     const SeriesOverviewWidget(),
     const SeriesDetailWidget(),

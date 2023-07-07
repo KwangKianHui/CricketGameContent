@@ -9,7 +9,6 @@ import 'package:cricket_game_content_app/data/dto/series_dto.dart';
 import 'package:cricket_game_content_app/data/series_remote_service.dart';
 import 'package:cricket_game_content_app/data/series_repository.dart';
 import 'package:dartz/dartz.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
